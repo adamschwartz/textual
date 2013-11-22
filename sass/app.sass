@@ -77,6 +77,8 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
     left: 0
     right: 0
     bottom: 0
+    overflow: hidden
+    white-space: nowrap
     -webkit-pointer-events: none
     pointer-events: none
 
@@ -85,6 +87,19 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 
     .selection
       background: rgba(0, 0, 0, .1)
+
+    &:after
+      content: ""
+      position: absolute
+      display: block
+      top: 0
+      right: 0
+      bottom: 0
+      width: 5rem
+      border-right: 1rem solid #fff
+      +background-image(linear-gradient(left, rgba(255, 255, 255, 0), #fff))
+      -webkit-pointer-events: none
+      pointer-events: none
 
   .input-validator
     opacity: 0
@@ -142,8 +157,6 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 
   .field.field-focused .input-display
     opacity: 1
-    overflow: hidden
-    white-space: nowrap
 
     &.placeholder
       color: rgba(0, 0, 0, .35)
