@@ -1,45 +1,45 @@
-/* line 18, ../sass/app.sass */
+/* line 3, ../sass/app.sass */
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 21, ../sass/app.sass */
+/* line 6, ../sass/app.sass */
 ::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.3);
 }
 
-/* line 24, ../sass/app.sass */
+/* line 9, ../sass/app.sass */
 html {
   font-size: 300%;
 }
 @media (max-width: 1440px), (max-height: 720px) {
-  /* line 24, ../sass/app.sass */
+  /* line 9, ../sass/app.sass */
   html {
     font-size: 250%;
   }
 }
 @media (max-width: 1024px), (max-height: 512px) {
-  /* line 24, ../sass/app.sass */
+  /* line 9, ../sass/app.sass */
   html {
     font-size: 225%;
   }
 }
 @media (max-width: 568px), (max-height: 284px) {
-  /* line 24, ../sass/app.sass */
+  /* line 9, ../sass/app.sass */
   html {
     font-size: 200%;
   }
 }
 
-/* line 36, ../sass/app.sass */
+/* line 21, ../sass/app.sass */
 html, body {
   width: 100%;
   height: 100%;
 }
 
-/* line 40, ../sass/app.sass */
+/* line 25, ../sass/app.sass */
 body {
   margin: 0;
   font-size: 16px;
@@ -47,7 +47,7 @@ body {
   color: black;
 }
 
-/* line 46, ../sass/app.sass */
+/* line 31, ../sass/app.sass */
 .example-container {
   width: 100%;
   height: 100%;
@@ -63,7 +63,7 @@ body {
   justify-content: center;
 }
 
-/* line 65, ../sass/app.sass */
+/* line 50, ../sass/app.sass */
 input[type="text"], input[type="url"], input[type="password"], .input-display, .input-validator {
   border: 0;
   background: transparent;
@@ -73,25 +73,25 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   width: 100%;
 }
 
-/* line 73, ../sass/app.sass */
+/* line 58, ../sass/app.sass */
 .contextual.fields {
   width: 16rem;
   max-width: 90%;
 }
-/* line 77, ../sass/app.sass */
+/* line 62, ../sass/app.sass */
 .contextual.fields .field {
   width: 100%;
 }
-/* line 80, ../sass/app.sass */
+/* line 65, ../sass/app.sass */
 .contextual.fields input[type="text"], .contextual.fields input[type="url"], .contextual.fields input[type="password"] {
   opacity: 0;
   color: pink;
 }
-/* line 84, ../sass/app.sass */
+/* line 69, ../sass/app.sass */
 .contextual.fields input[type="text"]:focus, .contextual.fields input[type="url"]:focus, .contextual.fields input[type="password"]:focus {
   outline: none;
 }
-/* line 87, ../sass/app.sass */
+/* line 72, ../sass/app.sass */
 .contextual.fields .input-display, .contextual.fields .input-validator {
   -webkit-transition: all 0.3s;
   color: inherit;
@@ -103,28 +103,28 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   -webkit-pointer-events: none;
   pointer-events: none;
 }
-/* line 98, ../sass/app.sass */
+/* line 83, ../sass/app.sass */
 .contextual.fields .input-display {
   opacity: 0.1;
 }
-/* line 101, ../sass/app.sass */
+/* line 86, ../sass/app.sass */
 .contextual.fields .input-display .selection {
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 104, ../sass/app.sass */
+/* line 89, ../sass/app.sass */
 .contextual.fields .input-validator {
   opacity: 0;
   color: rgba(0, 0, 0, 0);
 }
-/* line 108, ../sass/app.sass */
+/* line 93, ../sass/app.sass */
 .contextual.fields .input-validator .selection {
   position: relative;
 }
-/* line 114, ../sass/app.sass */
+/* line 99, ../sass/app.sass */
 .contextual.fields .input-validator .selection.invalid {
   background: rgba(200, 0, 0, 0.2);
 }
-/* line 119, ../sass/app.sass */
+/* line 104, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-validator-label]:before {
   content: attr(data-validator-label);
   position: absolute;
@@ -141,12 +141,12 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   padding-top: 0.2rem;
   border-top: 0.1rem solid;
 }
-/* line 135, ../sass/app.sass */
+/* line 120, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-validator-label][data-value-length="0"]:before {
   top: -0.7rem;
   border-top: 0;
 }
-/* line 139, ../sass/app.sass */
+/* line 124, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength]:before {
   content: "";
   -webkit-transition: background 0.3s;
@@ -160,29 +160,29 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   right: 0;
   height: 0.1rem;
 }
-/* line 149, ../sass/app.sass */
+/* line 134, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength="weak"]:before {
   background: rgba(200, 0, 0, 0.5);
 }
-/* line 152, ../sass/app.sass */
+/* line 137, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength="ok"]:before {
   background: #ffa000;
 }
-/* line 155, ../sass/app.sass */
+/* line 140, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength="strong"]:before {
   background: rgba(0, 200, 0, 0.5);
 }
-/* line 158, ../sass/app.sass */
+/* line 143, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display {
   opacity: 1;
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 163, ../sass/app.sass */
+/* line 148, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display.placeholder {
   color: rgba(0, 0, 0, 0.35);
 }
-/* line 166, ../sass/app.sass */
+/* line 151, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display .cursor {
   position: relative;
   display: inline-block;
@@ -191,7 +191,7 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   height: 100%;
   -webkit-animation: blink 1.1s linear infinite;
 }
-/* line 174, ../sass/app.sass */
+/* line 159, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display .cursor:after {
   content: "";
   background: black;
@@ -201,56 +201,56 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   top: -0.05em;
   bottom: 0.1em;
 }
-/* line 183, ../sass/app.sass */
+/* line 168, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-validator {
   opacity: 1;
 }
 
 @-webkit-keyframes blink {
-  /* line 187, ../sass/app.sass */
+  /* line 172, ../sass/app.sass */
   0% {
     opacity: 1;
   }
 
-  /* line 189, ../sass/app.sass */
+  /* line 174, ../sass/app.sass */
   50% {
     opacity: 1;
   }
 
-  /* line 191, ../sass/app.sass */
+  /* line 176, ../sass/app.sass */
   51% {
     opacity: 0;
   }
 
-  /* line 193, ../sass/app.sass */
+  /* line 178, ../sass/app.sass */
   100% {
     opacity: 0;
   }
 }
 
-/* line 196, ../sass/app.sass */
+/* line 181, ../sass/app.sass */
 .field {
   -webkit-transition: all 0.6s;
   opacity: 0;
 }
-/* line 200, ../sass/app.sass */
+/* line 185, ../sass/app.sass */
 .field:nth-child(1) {
   -webkit-transform: translateY(0.5rem);
   -webkit-transition-duration: 1s;
   -webkit-transition-delay: 0.5s;
 }
-/* line 205, ../sass/app.sass */
+/* line 190, ../sass/app.sass */
 .field:nth-child(2) {
   -webkit-transform: translateY(1rem);
   -webkit-transition-delay: 0.2s;
 }
-/* line 209, ../sass/app.sass */
+/* line 194, ../sass/app.sass */
 .field:nth-child(3) {
   -webkit-transform: translateY(2rem);
   -webkit-transition-delay: 0s;
 }
 
-/* line 213, ../sass/app.sass */
+/* line 198, ../sass/app.sass */
 body.page-loaded .field {
   opacity: 1;
   -webkit-transform: translateY(0);

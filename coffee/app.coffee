@@ -116,14 +116,6 @@ setupMimicInputDisplays = ->
 focusFirstInput = ->
   document.querySelector('.field:first-child input').focus()
 
-
-# setFieldClassesOnFocus = ->
-#   makeArray(document.querySelectorAll('.field')).forEach (field) ->
-#     input = field.querySelector('input')
-#     return unless input
-#     input.addEventListener 'input', (event) ->
-#       log event
-
 init = ->
   setTimeout ->
     addPageLoadedClass()
