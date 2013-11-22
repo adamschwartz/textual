@@ -1,0 +1,215 @@
+@import compass/css3
+
+// <div class="example-container">
+//     <div class="name field">
+//         <div class="name-input input-display"></div>
+//         <input type="text" name="name" />
+//     </div>
+//     <div class="url field">
+//         <div class="url-input input-display"></div>
+//         <input type="url" name="url" />
+//     </div>
+//     <div class="password field">
+//         <div class="password-input input-display"></div>
+//         <input type="password" name="password" />
+//     </div>
+// </div>
+
+*, *:after, *:before
+  +box-sizing(border-box)
+
+::-webkit-input-placeholder
+  color: rgba(0, 0, 0, .3)
+
+html
+  font-size: 300%
+
+  @media (max-width: 1440px), (max-height: 720px)
+    font-size: 250%
+
+  @media (max-width: 1024px), (max-height: 512px)
+    font-size: 225%
+
+  @media (max-width: 568px), (max-height: 284px)
+    font-size: 200%
+
+html, body
+  width: 100%
+  height: 100%
+
+body
+  margin: 0
+  font-size: 16px
+  font-family: "Helvetica Neue"
+  color: #000
+
+.example-container
+  width: 100%
+  height: 100%
+
+  display: -webkit-flex
+  display: flex
+
+  -webkit-flex-direction: row
+  flex-direction: row
+
+  -webkit-flex-direction: column
+  flex-direction: column
+
+  -webkit-align-items: center
+  align-items: center
+
+  -webkit-justify-content: center
+  justify-content: center
+
+input[type="text"], input[type="url"], input[type="password"], .input-display, .input-validator
+  border: 0
+  background: transparent
+  font-family: inherit
+  font-size: 1rem
+  padding: .75em 1em
+  width: 100%
+
+.contextual.fields
+  width: 16rem
+  max-width: 90%
+
+  .field
+    width: 100%
+
+  input[type="text"], input[type="url"], input[type="password"]
+    opacity: 0
+    color: pink
+
+    &:focus
+      outline: none
+
+  .input-display, .input-validator
+    -webkit-transition: all .3s
+    color: inherit
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    -webkit-pointer-events: none
+    pointer-events: none
+
+  .input-display
+    opacity: .1
+
+    .selection
+      background: rgba(0, 0, 0, .1)
+
+  .input-validator
+    opacity: 0
+    color: rgba(0, 0, 0, 0)
+
+    .selection
+      position: relative
+
+      &.valid
+        //background: rgba(0, 200, 0, .1)
+
+      &.invalid
+        background: rgba(200, 0, 0, .2)
+
+      &[data-validator-label]
+
+        &:before
+          content: attr(data-validator-label)
+          position: absolute
+          display: block
+          bottom: -.7rem
+          left: 0
+          right: 0
+          text-align: center
+          font-size: .3rem
+          text-transform: uppercase
+          letter-spacing: 1px
+          font-weight: 300
+          color: #000
+          padding-top: .2rem
+          border-top: .1rem solid
+
+        &[data-value-length="0"]:before
+          top: -.7rem
+          border-top: 0
+
+      &[data-strength]:before
+        content: ""
+        +transition(background .3s)
+        position: absolute
+        display: block
+        bottom: 0
+        left: 0
+        right: 0
+        height: .1rem
+
+      &[data-strength="weak"]:before
+        background: rgba(200, 0, 0, .5)
+
+      &[data-strength="ok"]:before
+        background: rgb(255, 160, 0)
+
+      &[data-strength="strong"]:before
+        background: rgba(0, 200, 0, .5)
+
+  .field.field-focused .input-display
+    opacity: 1
+    overflow: hidden
+    white-space: nowrap
+
+    &.placeholder
+      color: rgba(0, 0, 0, .35)
+
+    .cursor
+      position: relative
+      display: inline-block
+      vertical-align: middle
+      width: 0
+      height: 100%
+      -webkit-animation: blink 1.1s linear infinite
+
+      &:after
+        content: ""
+        background: #000
+        width: 1px
+        display: block
+        position: absolute
+        top: -.05em
+        bottom: 0.1em
+
+  .field.field-focused .input-validator
+    opacity: 1
+
+@-webkit-keyframes blink
+  0%
+    opacity: 1
+  50%
+    opacity: 1
+  51%
+    opacity: 0
+  100%
+    opacity: 0
+
+.field
+  -webkit-transition: all .6s
+  opacity: 0
+
+  &:nth-child(1)
+    -webkit-transform: translateY(.5rem)
+    -webkit-transition-duration: 1s
+    -webkit-transition-delay: .5s
+
+  &:nth-child(2)
+    -webkit-transform: translateY(1rem)
+    -webkit-transition-delay: .2s
+
+  &:nth-child(3)
+    -webkit-transform: translateY(2rem)
+    -webkit-transition-delay: 0s
+
+body.page-loaded .field
+  opacity: 1
+  -webkit-transform: translateY(0)
