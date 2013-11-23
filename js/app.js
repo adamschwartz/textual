@@ -1,5 +1,5 @@
 (function() {
-  var addPageLoadedClass, focusFirstInput, formatters, init, log, makeArray, passwordString, setFieldClassesOnFocus, setupMimicInputDisplays;
+  var addPageLoadedClass, escapeCharacter, escapeCharacters, focusFirstInput, formatters, init, log, makeArray, passwordString, setFieldClassesOnFocus, setupMimicInputDisplays;
 
   makeArray = function(arrayLikeThing) {
     return Array.prototype.slice.call(arrayLikeThing);
@@ -13,16 +13,34 @@
     return new Array(value.length + 1).join('•');
   };
 
+  escapeCharacter = function(char) {
+    var code;
+    code = char.charCodeAt(0);
+    if (code === 32) {
+      return '&nbsp;';
+    }
+    return "&#" + (char.charCodeAt(0)) + ";";
+  };
+
+  escapeCharacters = function(str) {
+    var escaped;
+    escaped = '';
+    str.split('').forEach(function(char) {
+      return escaped += escapeCharacter(char);
+    });
+    return escaped;
+  };
+
   formatters = {
     name: {
       validator: function(input) {
         var html, words;
         html = '';
-        words = input.value.split(/\s+/g);
+        words = input.value.split(' ');
         words.forEach(function(word, i) {
           var className, validatorLabel;
           if (word.length === 0 && i !== 0) {
-            return;
+            return html += escapeCharacters(word + ' ');
           }
           validatorLabel = 'Middle';
           if (i === 0) {
@@ -35,8 +53,9 @@
             validatorLabel = 'Name';
           }
           className = word.match(/^[a-zA-Z'-]+$/) ? 'valid' : 'invalid';
-          return html += "<span class=\"selection " + className + "\" data-validator-label=\"" + validatorLabel + "\" data-value-length=\"" + input.value.length + "\">" + word + "</span> ";
+          return html += "<span class=\"selection " + className + "\" data-validator-label=\"" + validatorLabel + "\" data-value-length=\"" + input.value.length + "\">" + (escapeCharacters(word)) + "</span>&nbsp;";
         });
+        console.log(html);
         return html;
       }
     },
@@ -48,7 +67,8 @@
         if (input.value.length === 0) {
           extraAttributes = " data-validator-label=\"URL\" data-value-length=\"" + input.value.length + "\" ";
         }
-        return "<span class=\"selection " + className + "\" " + extraAttributes + ">" + input.value + "</span>";
+        console.log(escapeCharacters(input.value));
+        return "<span class=\"selection " + className + "\" " + extraAttributes + ">" + (escapeCharacters(input.value)) + "</span>";
       }
     },
     password: {
@@ -102,12 +122,8 @@
         var update;
         update = false;
         if (input.selectionStart !== selectionStart || input.selectionEnd !== selectionEnd) {
-          if (input.selectionStart !== selectionStart) {
-            selectionStart = input.selectionStart;
-          }
-          if (input.selectionEnd !== selectionEnd) {
-            selectionEnd = input.selectionEnd;
-          }
+          selectionStart = input.selectionStart;
+          selectionEnd = input.selectionEnd;
           return selectionUpdated();
         }
       };
@@ -129,6 +145,9 @@
           inputDisplay.classList.remove('placeholder');
         }
         letters = value.split('');
+        letters.forEach(function(letter, i) {
+          return letters[i] = escapeCharacter(letter);
+        });
         if (start === end) {
           letters.splice(start, 0, '<span class="cursor"></span>');
         } else {

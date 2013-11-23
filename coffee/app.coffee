@@ -7,21 +7,34 @@ log = ->
 passwordString = (value) ->
   new Array(value.length + 1).join '•'
 
+escapeCharacter = (char) ->
+  code = char.charCodeAt(0)
+  return '&nbsp;' if code is 32
+  "&##{ char.charCodeAt(0) };"
+
+escapeCharacters = (str) ->
+  escaped = ''
+  str.split('').forEach (char) -> escaped += escapeCharacter char
+  escaped
+
 formatters =
   name:
     validator: (input) ->
       html = ''
-      words = input.value.split /\s+/g
+      words = input.value.split(' ')
 
       words.forEach (word, i) ->
-        return if word.length is 0 and i isnt 0
+        if word.length is 0 and i isnt 0
+          return html += escapeCharacters(word + ' ')
+
         validatorLabel = 'Middle'
         validatorLabel = 'First' if i is 0
         validatorLabel = 'Last' if i is words.length - 1
         validatorLabel = 'Name' if words.length is 1
         className = if word.match(/^[a-zA-Z'-]+$/) then 'valid' else 'invalid'
-        html += """<span class="selection #{ className }" data-validator-label="#{ validatorLabel }" data-value-length="#{ input.value.length }">#{ word }</span> """
+        html += """<span class="selection #{ className }" data-validator-label="#{ validatorLabel }" data-value-length="#{ input.value.length }">#{ escapeCharacters word }</span>&nbsp;"""
 
+      console.log html
       html
 
   url:
@@ -29,7 +42,8 @@ formatters =
       className = if input.validity.valid then 'valid' else 'invalid'
       extraAttributes = ''
       extraAttributes = """ data-validator-label="URL" data-value-length="#{ input.value.length }" """ if input.value.length is 0
-      """<span class="selection #{ className }" #{ extraAttributes }>#{ input.value }</span>"""
+      console.log escapeCharacters input.value
+      """<span class="selection #{ className }" #{ extraAttributes }>#{ escapeCharacters input.value }</span>"""
 
   password:
     validator: (input) ->
@@ -65,8 +79,8 @@ setupMimicInputDisplays = ->
       update = false
 
       if input.selectionStart isnt selectionStart or input.selectionEnd isnt selectionEnd
-        selectionStart = input.selectionStart if input.selectionStart isnt selectionStart
-        selectionEnd = input.selectionEnd if input.selectionEnd isnt selectionEnd
+        selectionStart = input.selectionStart
+        selectionEnd = input.selectionEnd
 
         selectionUpdated()
 
@@ -88,6 +102,9 @@ setupMimicInputDisplays = ->
         inputDisplay.classList.remove 'placeholder'
 
       letters = value.split ''
+
+      letters.forEach (letter, i) ->
+        letters[i] = escapeCharacter letter
 
       if start is end
         letters.splice(start, 0, '<span class="cursor"></span>')
