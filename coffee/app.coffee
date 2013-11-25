@@ -34,7 +34,6 @@ formatters =
         className = if word.match(/^[a-zA-Z'-]+$/) then 'valid' else 'invalid'
         html += """<span class="selection #{ className }" data-validator-label="#{ validatorLabel }" data-value-length="#{ input.value.length }">#{ escapeCharacters word }</span>&nbsp;"""
 
-      console.log html
       html
 
   url:
@@ -42,7 +41,6 @@ formatters =
       className = if input.validity.valid then 'valid' else 'invalid'
       extraAttributes = ''
       extraAttributes = """ data-validator-label="URL" data-value-length="#{ input.value.length }" """ if input.value.length is 0
-      console.log escapeCharacters input.value
       """<span class="selection #{ className }" #{ extraAttributes }>#{ escapeCharacters input.value }</span>"""
 
   password:
@@ -73,7 +71,6 @@ setupMimicInputDisplays = ->
 
     updateValidator = ->
       inputValidator.innerHTML = formatters[input.getAttribute('name')].validator input
-      updateSelection()
 
     updateSelection = ->
       update = false
@@ -119,7 +116,9 @@ setupMimicInputDisplays = ->
     updateSelection()
     updateValidator()
 
-    input.addEventListener 'input', updateValidator
+    input.addEventListener 'input', ->
+      updateValidator()
+      updateSelection()
 
     input.addEventListener 'change', updateSelection
     input.addEventListener 'mouseup', updateSelection
@@ -142,3 +141,39 @@ init = ->
   focusFirstInput()
 
 init()
+
+# 3d stuff
+
+lastFocusedField = undefined
+
+document.querySelector('.three-dee-toggle').addEventListener 'mouseover', ->
+  lastFocusedField = document.querySelector('.field.field-focused input') or document.querySelector('.field:first-child input')
+
+document.querySelector('.three-dee-toggle').addEventListener 'click', ->
+  return if document.body.classList.contains 'three-dee-primed'
+
+  if @classList.contains 'three-dee-toggled'
+    @classList.remove 'three-dee-toggled'
+    document.body.classList.add 'three-dee-primed'
+    document.body.classList.remove 'three-dee'
+    setTimeout ->
+      document.body.classList.remove 'three-dee-primed'
+    , 2000
+
+  else
+    @classList.add 'three-dee-toggled'
+
+    document.body.classList.add 'three-dee-primed'
+    setTimeout ->
+      document.body.classList.add 'three-dee'
+      document.body.classList.remove 'three-dee-primed'
+    , 100
+
+  lastFocusedField?.focus()
+
+makeArray(document.querySelectorAll('input')).forEach (input) ->
+  input.addEventListener 'blur', (event) ->
+    if document.body.classList.contains('three-dee-primed') or document.body.classList.contains('three-dee')
+      event.preventDefault()
+      @focus()
+      return false

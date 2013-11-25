@@ -64,7 +64,7 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 
   input[type="text"], input[type="url"], input[type="password"]
     opacity: 0
-    color: pink
+    color: #000
 
     &:focus
       outline: none
@@ -108,6 +108,10 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
     .selection
       position: relative
 
+      &:not(:last-child):before
+        overflow: hidden
+        text-overflow: ellipsis
+
       &.valid
         //background: rgba(0, 200, 0, .1)
 
@@ -131,6 +135,7 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
           color: #000
           padding-top: .2rem
           border-top: .1rem solid
+          white-space: nowrap
 
         &[data-value-length="0"]:before
           top: -.7rem
@@ -138,7 +143,7 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 
       &[data-strength]:before
         content: ""
-        +transition(background .3s)
+        -webkit-transition: background .3s
         position: absolute
         display: block
         bottom: 0
@@ -211,3 +216,64 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 body.page-loaded .field
   opacity: 1
   -webkit-transform: translateY(0)
+
+// 3d stuff
+
+.three-dee-toggle
+  position: fixed
+  top: 1rem
+  left: 1rem
+  font-size: .5rem
+  cursor: pointer
+  -webkit-transition: opacity .5s
+  opacity: 0.5
+
+  &:hover, &.three-dee-toggled
+    opacity: 1
+
+body
+
+  &.three-dee-primed, &.three-dee
+
+    .contextual.fields
+
+      &, .input-validator, .input-display, input
+        -webkit-transition: all 1s !important
+
+body.three-dee
+
+  .example-container
+
+    .contextual
+
+      .field
+
+        &:not(.field-focused)
+          opacity: 0
+          pointer-events: none
+
+        &.field-focused
+
+          .input-validator
+            -webkit-transform: translateY(0rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg)
+            opacity: 1 !important
+            background: #EBEBEB !important
+            z-index: 3
+            position: absolute
+
+          .input-display
+            -webkit-transform: translateY(3rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg)
+            opacity: 1 !important
+            background: #EBEBEB !important
+            z-index: 2
+            position: absolute
+
+            &:after
+              opacity: 0
+
+          input
+            -webkit-transform: translateY(6rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg)
+            box-shadow: 0 0 0 3px #000 !important
+            opacity: 1 !important
+            z-index: 1
+            position: relative

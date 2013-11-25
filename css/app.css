@@ -85,7 +85,7 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 /* line 65, ../sass/app.sass */
 .contextual.fields input[type="text"], .contextual.fields input[type="url"], .contextual.fields input[type="password"] {
   opacity: 0;
-  color: pink;
+  color: black;
 }
 /* line 69, ../sass/app.sass */
 .contextual.fields input[type="text"]:focus, .contextual.fields input[type="url"]:focus, .contextual.fields input[type="password"]:focus {
@@ -140,11 +140,16 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
 .contextual.fields .input-validator .selection {
   position: relative;
 }
-/* line 114, ../sass/app.sass */
+/* line 111, ../sass/app.sass */
+.contextual.fields .input-validator .selection:not(:last-child):before {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 118, ../sass/app.sass */
 .contextual.fields .input-validator .selection.invalid {
   background: rgba(200, 0, 0, 0.2);
 }
-/* line 119, ../sass/app.sass */
+/* line 123, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-validator-label]:before {
   content: attr(data-validator-label);
   position: absolute;
@@ -160,19 +165,17 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   color: black;
   padding-top: 0.2rem;
   border-top: 0.1rem solid;
+  white-space: nowrap;
 }
-/* line 135, ../sass/app.sass */
+/* line 140, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-validator-label][data-value-length="0"]:before {
   top: -0.7rem;
   border-top: 0;
 }
-/* line 139, ../sass/app.sass */
+/* line 144, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength]:before {
   content: "";
   -webkit-transition: background 0.3s;
-  -moz-transition: background 0.3s;
-  -o-transition: background 0.3s;
-  transition: background 0.3s;
   position: absolute;
   display: block;
   bottom: 0;
@@ -180,27 +183,27 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   right: 0;
   height: 0.1rem;
 }
-/* line 149, ../sass/app.sass */
+/* line 154, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength="weak"]:before {
   background: rgba(200, 0, 0, 0.5);
 }
-/* line 152, ../sass/app.sass */
+/* line 157, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength="ok"]:before {
   background: #ffa000;
 }
-/* line 155, ../sass/app.sass */
+/* line 160, ../sass/app.sass */
 .contextual.fields .input-validator .selection[data-strength="strong"]:before {
   background: rgba(0, 200, 0, 0.5);
 }
-/* line 158, ../sass/app.sass */
+/* line 163, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display {
   opacity: 1;
 }
-/* line 161, ../sass/app.sass */
+/* line 166, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display.placeholder {
   color: rgba(0, 0, 0, 0.35);
 }
-/* line 164, ../sass/app.sass */
+/* line 169, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display .cursor {
   position: relative;
   display: inline-block;
@@ -209,7 +212,7 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   height: 100%;
   -webkit-animation: blink 1.1s linear infinite;
 }
-/* line 172, ../sass/app.sass */
+/* line 177, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-display .cursor:after {
   content: "";
   background: black;
@@ -219,57 +222,111 @@ input[type="text"], input[type="url"], input[type="password"], .input-display, .
   top: -0.05em;
   bottom: 0.1em;
 }
-/* line 181, ../sass/app.sass */
+/* line 186, ../sass/app.sass */
 .contextual.fields .field.field-focused .input-validator {
   opacity: 1;
 }
 
 @-webkit-keyframes blink {
-  /* line 185, ../sass/app.sass */
+  /* line 190, ../sass/app.sass */
   0% {
     opacity: 1;
   }
 
-  /* line 187, ../sass/app.sass */
+  /* line 192, ../sass/app.sass */
   50% {
     opacity: 1;
   }
 
-  /* line 189, ../sass/app.sass */
+  /* line 194, ../sass/app.sass */
   51% {
     opacity: 0;
   }
 
-  /* line 191, ../sass/app.sass */
+  /* line 196, ../sass/app.sass */
   100% {
     opacity: 0;
   }
 }
 
-/* line 194, ../sass/app.sass */
+/* line 199, ../sass/app.sass */
 .field {
   -webkit-transition: all 0.6s;
   opacity: 0;
 }
-/* line 198, ../sass/app.sass */
+/* line 203, ../sass/app.sass */
 .field:nth-child(1) {
   -webkit-transform: translateY(0.5rem);
   -webkit-transition-duration: 1s;
   -webkit-transition-delay: 0.5s;
 }
-/* line 203, ../sass/app.sass */
+/* line 208, ../sass/app.sass */
 .field:nth-child(2) {
   -webkit-transform: translateY(1rem);
   -webkit-transition-delay: 0.2s;
 }
-/* line 207, ../sass/app.sass */
+/* line 212, ../sass/app.sass */
 .field:nth-child(3) {
   -webkit-transform: translateY(2rem);
   -webkit-transition-delay: 0s;
 }
 
-/* line 211, ../sass/app.sass */
+/* line 216, ../sass/app.sass */
 body.page-loaded .field {
   opacity: 1;
   -webkit-transform: translateY(0);
+}
+
+/* line 222, ../sass/app.sass */
+.three-dee-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.5rem;
+  cursor: pointer;
+  -webkit-transition: opacity 0.5s;
+  opacity: 0.5;
+}
+/* line 231, ../sass/app.sass */
+.three-dee-toggle:hover, .three-dee-toggle.three-dee-toggled {
+  opacity: 1;
+}
+
+/* line 240, ../sass/app.sass */
+body.three-dee-primed .contextual.fields, body.three-dee-primed .contextual.fields .input-validator, body.three-dee-primed .contextual.fields .input-display, body.three-dee-primed .contextual.fields input, body.three-dee .contextual.fields, body.three-dee .contextual.fields .input-validator, body.three-dee .contextual.fields .input-display, body.three-dee .contextual.fields input {
+  -webkit-transition: all 1s !important;
+}
+
+/* line 251, ../sass/app.sass */
+body.three-dee .example-container .contextual .field:not(.field-focused) {
+  opacity: 0;
+  pointer-events: none;
+}
+/* line 257, ../sass/app.sass */
+body.three-dee .example-container .contextual .field.field-focused .input-validator {
+  -webkit-transform: translateY(0rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg);
+  opacity: 1 !important;
+  background: #ebebeb !important;
+  z-index: 3;
+  position: absolute;
+}
+/* line 264, ../sass/app.sass */
+body.three-dee .example-container .contextual .field.field-focused .input-display {
+  -webkit-transform: translateY(3rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg);
+  opacity: 1 !important;
+  background: #ebebeb !important;
+  z-index: 2;
+  position: absolute;
+}
+/* line 271, ../sass/app.sass */
+body.three-dee .example-container .contextual .field.field-focused .input-display:after {
+  opacity: 0;
+}
+/* line 274, ../sass/app.sass */
+body.three-dee .example-container .contextual .field.field-focused input {
+  -webkit-transform: translateY(6rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg);
+  box-shadow: 0 0 0 3px black !important;
+  opacity: 1 !important;
+  z-index: 1;
+  position: relative;
 }
