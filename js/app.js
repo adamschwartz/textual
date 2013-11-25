@@ -1,5 +1,5 @@
 (function() {
-  var addPageLoadedClass, escapeCharacter, escapeCharacters, focusFirstInput, formatters, init, log, makeArray, passwordString, setFieldClassesOnFocus, setupMimicInputDisplays;
+  var addPageLoadedClass, escapeCharacter, escapeCharacters, focusFirstInput, formatters, init, lastFocusedField, log, makeArray, passwordString, setFieldClassesOnFocus, setupMimicInputDisplays;
 
   makeArray = function(arrayLikeThing) {
     return Array.prototype.slice.call(arrayLikeThing);
@@ -55,7 +55,6 @@
           className = word.match(/^[a-zA-Z'-]+$/) ? 'valid' : 'invalid';
           return html += "<span class=\"selection " + className + "\" data-validator-label=\"" + validatorLabel + "\" data-value-length=\"" + input.value.length + "\">" + (escapeCharacters(word)) + "</span>&nbsp;";
         });
-        console.log(html);
         return html;
       }
     },
@@ -67,7 +66,6 @@
         if (input.value.length === 0) {
           extraAttributes = " data-validator-label=\"URL\" data-value-length=\"" + input.value.length + "\" ";
         }
-        console.log(escapeCharacters(input.value));
         return "<span class=\"selection " + className + "\" " + extraAttributes + ">" + (escapeCharacters(input.value)) + "</span>";
       }
     },
@@ -115,8 +113,7 @@
       inputDisplay = field.querySelector('.input-display');
       selectionStart = selectionEnd = -1;
       updateValidator = function() {
-        inputValidator.innerHTML = formatters[input.getAttribute('name')].validator(input);
-        return updateSelection();
+        return inputValidator.innerHTML = formatters[input.getAttribute('name')].validator(input);
       };
       updateSelection = function() {
         var update;
@@ -159,7 +156,10 @@
       };
       updateSelection();
       updateValidator();
-      input.addEventListener('input', updateValidator);
+      input.addEventListener('input', function() {
+        updateValidator();
+        return updateSelection();
+      });
       input.addEventListener('change', updateSelection);
       input.addEventListener('mouseup', updateSelection);
       input.addEventListener('click', updateSelection);
@@ -185,5 +185,43 @@
   };
 
   init();
+
+  lastFocusedField = void 0;
+
+  document.querySelector('.three-dee-toggle').addEventListener('mouseover', function() {
+    return lastFocusedField = document.querySelector('.field.field-focused input') || document.querySelector('.field:first-child input');
+  });
+
+  document.querySelector('.three-dee-toggle').addEventListener('click', function() {
+    if (document.body.classList.contains('three-dee-primed')) {
+      return;
+    }
+    if (this.classList.contains('three-dee-toggled')) {
+      this.classList.remove('three-dee-toggled');
+      document.body.classList.add('three-dee-primed');
+      document.body.classList.remove('three-dee');
+      setTimeout(function() {
+        return document.body.classList.remove('three-dee-primed');
+      }, 2000);
+    } else {
+      this.classList.add('three-dee-toggled');
+      document.body.classList.add('three-dee-primed');
+      setTimeout(function() {
+        document.body.classList.add('three-dee');
+        return document.body.classList.remove('three-dee-primed');
+      }, 100);
+    }
+    return lastFocusedField != null ? lastFocusedField.focus() : void 0;
+  });
+
+  makeArray(document.querySelectorAll('input')).forEach(function(input) {
+    return input.addEventListener('blur', function(event) {
+      if (document.body.classList.contains('three-dee-primed') || document.body.classList.contains('three-dee')) {
+        event.preventDefault();
+        this.focus();
+        return false;
+      }
+    });
+  });
 
 }).call(this);
