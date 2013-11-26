@@ -1,0 +1,135 @@
+@import compass/css3
+
+.textual.textual-theme-subtle
+
+  input, .input-display, .input-validator
+    border: 0
+    background: transparent
+    font-family: inherit
+    font-size: 1rem
+    padding: .75em 1em
+    width: 100%
+
+  .textual-field
+    position: relative
+
+  input
+    opacity: 0
+    color: #000
+
+    &:focus
+      outline: none
+
+  .input-display, .input-validator
+    -webkit-transition: all .3s
+    color: inherit
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    overflow: hidden
+    white-space: nowrap
+    -webkit-pointer-events: none
+    pointer-events: none
+
+  .input-display
+    opacity: .1
+
+    .selection
+      background: rgba(0, 0, 0, .1)
+
+    &:after
+      content: ""
+      position: absolute
+      display: block
+      top: 0
+      right: 0
+      bottom: 0
+      width: 5rem
+      border-right: 1rem solid #fff
+      +background-image(linear-gradient(left, rgba(255, 255, 255, 0), #fff))
+      -webkit-pointer-events: none
+      pointer-events: none
+
+  .input-validator
+    opacity: 0
+    color: rgba(0, 0, 0, 0)
+
+    .selection
+      position: relative
+
+      &:not(:last-child):before
+        overflow: hidden
+        text-overflow: ellipsis
+
+      &.valid
+        //background: rgba(0, 200, 0, .1)
+
+      &.invalid
+        background: rgba(200, 0, 0, .2)
+
+      &[data-validator-label]
+
+        &:before
+          content: attr(data-validator-label)
+          position: absolute
+          display: block
+          bottom: -.7rem
+          left: 0
+          right: 0
+          text-align: center
+          font-size: .3rem
+          text-transform: uppercase
+          letter-spacing: 1px
+          font-weight: 300
+          color: #000
+          padding-top: .2rem
+          border-top: .1rem solid
+          white-space: nowrap
+
+        &[data-value-length="0"]:before
+          top: -.7rem
+          border-top: 0
+
+      &[data-strength]:before
+        content: ""
+        -webkit-transition: background .3s
+        position: absolute
+        display: block
+        bottom: 0
+        left: 0
+        right: 0
+        height: .1rem
+
+      &[data-strength="weak"]:before
+        background: rgba(200, 0, 0, .5)
+
+      &[data-strength="ok"]:before
+        background: rgb(255, 160, 0)
+
+      &[data-strength="strong"]:before
+        background: rgba(0, 200, 0, .5)
+
+  .textual-field.textual-field-focused
+
+    .input-display
+      opacity: 1
+
+      &.placeholder
+        color: rgba(0, 0, 0, .35)
+
+  .textual-field.textual-field-focused
+
+    .input-validator
+      opacity: 1
+
+@-webkit-keyframes textual-blink
+  0%
+    opacity: 1
+  50%
+    opacity: 1
+  51%
+    opacity: 0
+  100%
+    opacity: 0

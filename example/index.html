@@ -8,29 +8,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Contextual Example</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../css/app.css" />
+    <link rel="stylesheet" href="../css/textual.css" />
+    <link rel="stylesheet" href="../css/textual-theme-subtle.css" />
+    <link rel="stylesheet" href="../css/textual-theme-bootstrap.css" />
+    <link rel="stylesheet" href="css/example.css" />
 </head>
 <body>
-    <div class="example-container">
-        <div class="contextual fields">
-            <div class="name field">
+    <div class="example-section example-section-subtle">
+        <div class="textual textual-theme-subtle">
+            <div class="textual-field" data-textual-field-type="name">
                 <div class="name-input input-validator"></div>
                 <div class="name-input input-display"></div>
-                <input type="text" name="name" placeholder="Name" autocomplete="off" spellcheck="false" maxlength="32" />
+                <input type="text" placeholder="Name" autocomplete="off" spellcheck="false" maxlength="32" />
             </div>
-            <div class="url field">
+            <div class="textual-field" data-textual-field-type="url">
                 <div class="url-input input-validator"></div>
                 <div class="url-input input-display"></div>
-                <input type="url" name="url" placeholder="http://..." autocomplete="off" spellcheck="false" maxlength="32" />
+                <input type="url" placeholder="http://..." autocomplete="off" spellcheck="false" maxlength="32" />
             </div>
-            <div class="password field">
+            <div class="textual-field" data-textual-field-type="password">
                 <div class="password-input input-validator"></div>
                 <div class="password-input input-display"></div>
-                <input type="password" name="password" placeholder="Password" maxlength="16" />
+                <input type="password" placeholder="Password" maxlength="16" />
+            </div>
+        </div>
+        <div class="three-dee-toggle">3D</div>
+    </div>
+    <div class="example-section example-section-bootstrap">
+        <form role="form" class="textual textual-theme-bootstrap">
+            <div class="form-group">
+                <label for="bootstrap-example-input-email">Email address</label>
+                <div class="textual-field" data-textual-field-type="email">
+                    <div class="email-input input-validator"></div>
+                    <div class="email-input input-display"></div>
+                    <input id="bootstrap-example-input-email" type="email" placeholder="username@domain.com" autocomplete="off" spellcheck="false" maxlength="32" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bootstrap-example-input-password">Password</label>
+                <div class="textual-field" data-textual-field-type="password">
+                    <div class="password-input input-validator"></div>
+                    <div class="password-input input-display"></div>
+                    <input id="bootstrap-example-input-password" type="password" placeholder="Password" maxlength="16" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--
+    <div class="example-section example-section-mathematics">
+        <div class="textual textual-theme-mathematics">
+            <div class="textual-field" data-textual-field-type="math">
+                <div class="math-input input-validator"></div>
+                <div class="math-input input-display"></div>
+                <input type="math" placeholder="user@example.com" autocomplete="off" spellcheck="false" maxlength="32" />
             </div>
         </div>
     </div>
-    <div class="three-dee-toggle">3D</div>
-    <script src="../js/app.js"></script>
+    -->
+    <script src="../js/textual.js"></script>
+    <script src="js/example.js"></script>
 </body>
 </html>

@@ -1,0 +1,69 @@
+/* line 5, ../sass/textual.sass */
+.textual, .textual:after, .textual:before, .textual *, .textual *:after, .textual *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 8, ../sass/textual.sass */
+.textual input {
+  font-family: inherit;
+  line-height: normal;
+  font-size: 100%;
+  margin: 0;
+}
+/* line 14, ../sass/textual.sass */
+.textual .textual-field {
+  position: relative;
+}
+/* line 17, ../sass/textual.sass */
+.textual .input-display, .textual .input-validator {
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-pointer-events: none;
+  pointer-events: none;
+}
+/* line 23, ../sass/textual.sass */
+.textual .input-display .selection {
+  background: rgba(0, 0, 0, 0.1);
+}
+/* line 28, ../sass/textual.sass */
+.textual .textual-field.textual-field-focused .cursor {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
+  -webkit-animation: textual-blink 1.1s linear infinite;
+}
+/* line 36, ../sass/textual.sass */
+.textual .textual-field.textual-field-focused .cursor:after {
+  content: "";
+  background: black;
+  width: 1px;
+  display: block;
+  position: absolute;
+  top: -0.05em;
+  bottom: 0.1em;
+}
+
+@-webkit-keyframes textual-blink {
+  /* line 46, ../sass/textual.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 48, ../sass/textual.sass */
+  50% {
+    opacity: 1;
+  }
+
+  /* line 50, ../sass/textual.sass */
+  51% {
+    opacity: 0;
+  }
+
+  /* line 52, ../sass/textual.sass */
+  100% {
+    opacity: 0;
+  }
+}
