@@ -1,0 +1,164 @@
+/* line 3, ../sass/example.sass */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 6, ../sass/example.sass */
+::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* line 9, ../sass/example.sass */
+html {
+  font-size: 300%;
+}
+@media (max-width: 1440px), (max-height: 720px) {
+  /* line 9, ../sass/example.sass */
+  html {
+    font-size: 250%;
+  }
+}
+@media (max-width: 1024px), (max-height: 512px) {
+  /* line 9, ../sass/example.sass */
+  html {
+    font-size: 225%;
+  }
+}
+@media (max-width: 568px), (max-height: 284px) {
+  /* line 9, ../sass/example.sass */
+  html {
+    font-size: 200%;
+  }
+}
+
+/* line 21, ../sass/example.sass */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 25, ../sass/example.sass */
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  color: black;
+}
+
+/* line 31, ../sass/example.sass */
+.example-section {
+  width: 100%;
+  min-height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+/* line 54, ../sass/example.sass */
+.example-section-subtle .textual {
+  width: 16rem;
+  max-width: 100%;
+}
+/* line 58, ../sass/example.sass */
+.example-section-subtle .textual-field {
+  -webkit-transition: all 0.6s;
+  opacity: 0;
+}
+/* line 62, ../sass/example.sass */
+.example-section-subtle .textual-field:nth-child(1) {
+  -webkit-transform: translateY(0.5rem);
+  -webkit-transition-duration: 1s;
+  -webkit-transition-delay: 0.5s;
+}
+/* line 67, ../sass/example.sass */
+.example-section-subtle .textual-field:nth-child(2) {
+  -webkit-transform: translateY(1rem);
+  -webkit-transition-delay: 0.2s;
+}
+/* line 71, ../sass/example.sass */
+.example-section-subtle .textual-field:nth-child(3) {
+  -webkit-transform: translateY(2rem);
+  -webkit-transition-delay: 0s;
+}
+/* line 75, ../sass/example.sass */
+body.page-loaded .example-section-subtle .textual-field {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+}
+
+/* line 79, ../sass/example.sass */
+.example-section-mathematics {
+  background: #202020;
+  color: white;
+}
+
+/* line 83, ../sass/example.sass */
+.example-section-bootstrap {
+  background: #eeeeee;
+}
+/* line 86, ../sass/example.sass */
+.example-section-bootstrap .textual.textual-theme-bootstrap {
+  width: 10rem;
+}
+
+/* line 91, ../sass/example.sass */
+.three-dee-toggle {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.5rem;
+  cursor: pointer;
+  -webkit-transition: opacity 0.5s;
+  opacity: 0.5;
+}
+/* line 100, ../sass/example.sass */
+.three-dee-toggle:hover, .three-dee-toggle.three-dee-toggled {
+  opacity: 1;
+}
+
+/* line 111, ../sass/example.sass */
+body.three-dee-primed .example-section-subtle .textual, body.three-dee-primed .example-section-subtle .textual .input-validator, body.three-dee-primed .example-section-subtle .textual .input-display, body.three-dee-primed .example-section-subtle .textual input, body.three-dee .example-section-subtle .textual, body.three-dee .example-section-subtle .textual .input-validator, body.three-dee .example-section-subtle .textual .input-display, body.three-dee .example-section-subtle .textual input {
+  -webkit-transition: all 1s !important;
+}
+/* line 116, ../sass/example.sass */
+body.three-dee .example-section-subtle .textual .textual-field:not(.textual-field-focused) {
+  opacity: 0;
+  pointer-events: none;
+}
+/* line 122, ../sass/example.sass */
+body.three-dee .example-section-subtle .textual .textual-field.textual-field-focused .input-validator {
+  -webkit-transform: translateY(0rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg) !important;
+  opacity: 1 !important;
+  background: #ebebeb !important;
+  z-index: 3 !important;
+  position: absolute !important;
+}
+/* line 129, ../sass/example.sass */
+body.three-dee .example-section-subtle .textual .textual-field.textual-field-focused .input-display {
+  -webkit-transform: translateY(3rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg) !important;
+  opacity: 1 !important;
+  background: #ebebeb !important;
+  z-index: 2 !important;
+  position: absolute !important;
+}
+/* line 136, ../sass/example.sass */
+body.three-dee .example-section-subtle .textual .textual-field.textual-field-focused .input-display:after {
+  opacity: 0;
+}
+/* line 139, ../sass/example.sass */
+body.three-dee .example-section-subtle .textual .textual-field.textual-field-focused input {
+  -webkit-transform: translateY(6rem) rotateX(46deg) rotateY(20deg) rotateZ(-20deg) !important;
+  box-shadow: 0 0 0 3px black !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
+  position: relative !important;
+}

@@ -1,0 +1,53 @@
+@import compass/css3
+
+.textual
+
+  &, &:after, &:before, *, *:after, *:before
+    +box-sizing(border-box)
+
+  input
+    font-family: inherit
+    line-height: normal
+    font-size: 100%
+    margin: 0
+
+  .textual-field
+    position: relative
+
+  .input-display, .input-validator
+    overflow: hidden
+    white-space: nowrap
+    -webkit-pointer-events: none
+    pointer-events: none
+
+  .input-display .selection
+    background: rgba(0, 0, 0, .1)
+
+  .textual-field.textual-field-focused
+
+    .cursor
+      position: relative
+      display: inline-block
+      vertical-align: middle
+      width: 0
+      height: 100%
+      -webkit-animation: textual-blink 1.1s linear infinite
+
+      &:after
+        content: ""
+        background: #000
+        width: 1px
+        display: block
+        position: absolute
+        top: -.05em
+        bottom: 0.1em
+
+@-webkit-keyframes textual-blink
+  0%
+    opacity: 1
+  50%
+    opacity: 1
+  51%
+    opacity: 0
+  100%
+    opacity: 0
